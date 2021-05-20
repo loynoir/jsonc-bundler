@@ -1,0 +1,10 @@
+{
+  "a": {
+    "a": {
+      // comment from base
+      "a": "a",
+      // comment from extend
+      "b": "bb"
+    }
+  }
+}

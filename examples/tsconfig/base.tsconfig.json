@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    // comment from base: esnext
+    "module": "esnext",
+    "target": "esnext",
+
+    // comment from base: strict for default
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  }
+}

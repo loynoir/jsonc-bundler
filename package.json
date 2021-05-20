@@ -1,0 +1,22 @@
+{
+  "name": "jsonc-bundler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "bin": "src/cli.js",
+  "scripts": {
+    "build": "tsc src/*.ts && npm run test",
+    "test": "bash examples/tsconfig/test.sh && bash examples/json-with-comments/test.sh",
+    "cli": "node src/cli.js"
+  },
+  "author": "loynoir",
+  "license": "ISC",
+  "dependencies": {
+    "comment-json": "^4.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.169",
+    "@types/node": "^15.3.1"
+  }
+}

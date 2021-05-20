@@ -1,0 +1,9 @@
+{
+  "include": "./base.jsonc",
+  "a": {
+    "a": {
+      // comment from extend
+      "b": "bb"
+    }
+  }
+}

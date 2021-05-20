@@ -1,0 +1,8 @@
+{
+  "extends": "./base.tsconfig.json",
+  "compilerOptions": {
+    // comment from extend: less strict for ts-node
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}

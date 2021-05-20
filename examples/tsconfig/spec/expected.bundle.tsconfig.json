@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    // comment from base: esnext
+    "module": "esnext",
+    "target": "esnext",
+    // comment from extend: less strict for ts-node
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}
