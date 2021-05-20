@@ -6,7 +6,7 @@
 	readonly __dirname
 	cd "${__dirname}" || exit 1
 
-	export JSONC_EXTENDS=extends
+	export JSONC_BUNDLER_EXTENDS=extends
     
 	npm run --silent cli \
 		"$PWD"/extend.tsconfig.json \

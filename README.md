@@ -52,4 +52,4 @@ $ cat examples/tsconfig/spec/actual.bundle.tsconfig.json
 
 ### Environment
 
-JSONC_EXTENDS | optional | default="extends"
+JSONC_BUNDLER_EXTENDS | optional | default="extends"
