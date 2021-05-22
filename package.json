@@ -1,22 +1,37 @@
 {
   "name": "jsonc-bundler",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "bin": "src/cli.js",
+  "description": "jsonc-bundler",
+  "main": "dist/tsc/cjs/index.js",
+  "module": "dist/tsc/es/index.js",
+  "types": "dist/tsc/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/tsc/cjs/index.js",
+      "import": "./dist/tsc/es/index.js",
+      "default": "./dist/tsc/cjs/index.js"
+    }
+  },
+  "bin": {
+    "jsonc-bundler": "dist/tsc/cjs/cli.js"
+  },
   "scripts": {
-    "build": "tsc src/*.ts && npm run test",
+    "clean": "trash dist",
+    "build": "npm run compile && npm run test",
+    "compile": "tsc --build cjs.tsconfig.json && tsc --build es.tsconfig.json",
     "test": "bash examples/tsconfig/test.sh && bash examples/json-with-comments/test.sh",
-    "cli": "node src/cli.js"
+    "jsonc-bundler": "node dist/tsc/cjs/cli.js"
   },
   "author": "loynoir",
   "license": "ISC",
   "dependencies": {
     "comment-json": "^4.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.169",
-    "@types/node": "^15.3.1"
+    "@types/node": "^15.3.1",
+    "@types/yargs": "^16.0.3"
   }
 }

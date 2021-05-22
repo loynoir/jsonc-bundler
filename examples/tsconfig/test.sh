@@ -5,10 +5,8 @@
 	__dirname="$(dirname "$0")"
 	readonly __dirname
 	cd "${__dirname}" || exit 1
-
-	export JSONC_BUNDLER_EXTENDS=extends
     
-	npm run --silent cli \
+	npm -s run jsonc-bundler -- \
 		"$PWD"/extend.tsconfig.json \
 		>"$PWD"/spec/actual.bundle.tsconfig.json
 

@@ -49,7 +49,3 @@ $ cat examples/tsconfig/spec/actual.bundle.tsconfig.json
   }
 }
 ```
-
-### Environment
-
-JSONC_BUNDLER_EXTENDS | optional | default="extends"

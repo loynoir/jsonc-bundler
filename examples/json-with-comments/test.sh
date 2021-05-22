@@ -6,9 +6,8 @@
 	readonly __dirname
 	cd "${__dirname}" || exit 1
 
-	export JSONC_BUNDLER_EXTENDS=include
-    
-	npm run --silent cli \
+	npm -s run jsonc-bundler -- \
+		-e include \
 		"$PWD"/extend.jsonc \
 		>"$PWD"/spec/actual.bundle.jsonc
 

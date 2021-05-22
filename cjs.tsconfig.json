@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist/tsc/cjs",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "esModuleInterop": true
+  }
+}

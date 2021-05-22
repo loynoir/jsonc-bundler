@@ -23,26 +23,26 @@ export const jsoncMerge = (a: any, b: any) => {
 // convert jsonc with dependencies loaded, while keeping comments
 export const jsoncParse = async (
   filename: string,
-  { extend = "extends" }
+  { extends: _extends = "extends" }
 ): Promise<any> => {
   const LOOP = jsoncParse;
 
-  const content = await fs.promises.readFile(filename, "utf8");
+  const content = await fs.promises.readFile(filename, { encoding: "utf8" });
   const data = _jcParse(content);
 
-  if (!(extend in data)) {
+  if (!(_extends in data)) {
     return data;
   }
 
-  const dep = data[extend];
+  const dep = data[_extends];
   const dep_abs = path.resolve(path.dirname(filename), dep);
   if (!fs.existsSync(dep_abs)) {
     throw new Error(`Not exists: ${dep_abs}}`);
   }
-  const dep_data = await LOOP(dep_abs, { extend });
+  const dep_data = await LOOP(dep_abs, { extends: _extends });
 
   // remove field
-  delete data[extend];
+  delete data[_extends];
   return jsoncMerge(dep_data, data);
 };
 
@@ -51,12 +51,16 @@ export const jsoncStringify = async (data: any) => {
   return s;
 };
 
+interface JsoncBundlerOptions {
+  output: string | string[];
+  extends: string;
+}
 export const jsoncBundler = async (
   filenames: string[],
-  { extend = "extends" }
+  { output, extends: _extends }: JsoncBundlerOptions
 ) => {
   const datas = await Promise.all(
-    filenames.map((filename) => jsoncParse(filename, { extend }))
+    filenames.map((filename) => jsoncParse(filename, { extends: _extends }))
   );
   if (datas.length === 0) {
     return;
@@ -66,5 +70,9 @@ export const jsoncBundler = async (
     return jsoncMerge(acc, cur);
   });
 
-  return jsoncStringify(data);
+  const content = await jsoncStringify(data);
+
+  return Array.isArray(output)
+    ? Promise.all(output.map((x) => fs.promises.writeFile(x, content)))
+    : fs.promises.writeFile(output, content);
 };
