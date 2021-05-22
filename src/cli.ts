@@ -26,25 +26,20 @@ yargs(hideBin(process.argv))
     "$0 <files..>",
     "bundle jsonc",
     (yargs) => {
-      const options = {
-        output: {
+      return yargs
+        .strictOptions(true)
+        .option("output", {
           default: "/dev/stdout" as string | string[],
           alias: "o",
           describe: "Path of bundled jsonc output",
           defaultDescription: "stdout",
-        }, // as yargs.Options,
-        extends: {
+        })
+        .option("extends", {
           default: "extends" as string | string[],
           alias: "e",
           describe: "Field like tsconfig.json `extends`",
           defaultDescription: "extends",
-        }, // as yargs.Options,
-      };
-
-      return yargs
-        .strictOptions(true)
-        .option("output", options.output)
-        .option("extends", options.extends)
+        })
         .positional("files", {
           type: "string",
           // desc: ts workaround
