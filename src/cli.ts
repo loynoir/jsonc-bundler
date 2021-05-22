@@ -34,7 +34,6 @@ yargs(hideBin(process.argv))
           defaultDescription: "stdout",
         }, // as yargs.Options,
         extends: {
-          demandOption: true,
           default: "extends" as string | string[],
           alias: "e",
           describe: "Field like tsconfig.json `extends`",
